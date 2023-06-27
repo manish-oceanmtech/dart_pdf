@@ -79,8 +79,7 @@ class PdfDocument {
       deflate: compress ? (deflate ?? defaultDeflate) : null,
       verbose: verbose,
       version: version,
-      encryptCallback: (input, object) =>
-          encryption?.encrypt(input, object) ?? input,
+      encryptCallback: (input, object) => encryption?.encrypt(input, object) ?? input,
     );
     // create the catalog
     catalog = PdfCatalog(this, PdfPageList(this), pageMode: pageMode);
@@ -96,8 +95,7 @@ class PdfDocument {
       deflate: compress ? (deflate ?? defaultDeflate) : null,
       verbose: verbose,
       version: prev!.version,
-      encryptCallback: (input, object) =>
-          encryption?.encrypt(input, object) ?? input,
+      encryptCallback: (input, object) => encryption?.encrypt(input, object) ?? input,
     );
 
     // Import the existing document
@@ -177,8 +175,7 @@ class PdfDocument {
     if (_documentID == null) {
       final rnd = math.Random();
       _documentID = Uint8List.fromList(sha256
-          .convert(DateTime.now().toIso8601String().codeUnits +
-              List<int>.generate(32, (_) => rnd.nextInt(256)))
+          .convert(DateTime.now().toIso8601String().codeUnits + List<int>.generate(32, (_) => rnd.nextInt(256)))
           .bytes);
     }
 
@@ -234,8 +231,7 @@ class PdfDocument {
       xref.objects.add(ob);
     }
 
-    final id =
-        PdfString(documentID, format: PdfStringFormat.binary, encrypted: false);
+    final id = PdfString(documentID, format: PdfStringFormat.binary, encrypted: false);
     xref.params['/ID'] = PdfArray([id, id]);
 
     if (prev != null) {

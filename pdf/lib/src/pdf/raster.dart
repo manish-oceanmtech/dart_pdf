@@ -35,8 +35,9 @@ class PdfRasterBase {
     // final data = image.convert(format: im.Format.uint8, numChannels: 4, noAnimation: true).toUint8List();
     // final data = image.data;
     // return PdfRasterBase(image.width, image.height, true, data as Uint8List);
+    // final data = image.data.buffer.asUint8List();
 
-    final data = image.data.buffer.asUint8List();
+    final data = image.getBytes(format: im.Format.rgba);
     return PdfRasterBase(image.width, image.height, true, data);
   }
 
